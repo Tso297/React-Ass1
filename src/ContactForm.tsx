@@ -6,7 +6,7 @@ import { chooseColor, chooseMake, chooseYear, chooseModel } from "./redux/slices
 import { useForm } from 'react-hook-form';
 
 interface ContactFormProps {
-    id: string | null; // Change id type to string | null
+    id: string | null;
     onClose: () => void;
 }
 
@@ -19,9 +19,15 @@ const ContactForm = (props: ContactFormProps) => {
             console.log('Form data:', data);
 
             if (props.id) {
-                // If props.id exists, it means we're updating an existing item
-                await server_calls.update(props.id, data);
-                console.log(`Updated data: ${data.color}, ID: ${props.id}`);
+                if (data.delete) {
+                    // If delete is true, delete the item with the provided id
+                    await server_calls.delete(props.id);
+                    console.log(`Deleted item with ID: ${props.id}`);
+                } else {
+                    // If props.id exists, it means we're updating an existing item
+                    await server_calls.update(props.id, data);
+                    console.log(`Updated data: ${data.color}, ID: ${props.id}`);
+                }
             } else {
                 // If props.id is null, it means we're creating a new item
                 dispatch(chooseColor(data.color));
@@ -61,8 +67,12 @@ const ContactForm = (props: ContactFormProps) => {
                         <label htmlFor="year" className="block">Year</label>
                         <Input {...register('year')} name='year' placeholder="year"/>
                     </div>
-                    <div className="flex justify-end">
-                        <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Submit</button>
+                    <div className="flex justify-between">
+                        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Submit</button>
+                        {props.id && (
+                            <button type="button" onClick={() => onSubmit({ delete: true }, null)} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Delete</button>
+                        )}
+                        <button onClick={props.onClose} className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Cancel</button>
                     </div>
                 </form>
             </div>

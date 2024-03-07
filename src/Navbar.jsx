@@ -89,10 +89,6 @@ const Navbar = () => {
               </button>
             </>
           )}
-          {/* Button to open the modal */}
-          <button className='btn btn-outline-primary' onClick={() => setIsVisible(true)}>
-            Pimp Your Ride
-          </button>
         </div>
       </div>
       {/* Render the modal component */}
