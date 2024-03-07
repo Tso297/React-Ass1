@@ -1,0 +1,20 @@
+/* modal.css */
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* Change width to 100% to center the modal */
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Adjust the z-index value as needed */
+  }
+  
+  .modal-content {
+    width: 50%; /* Set the width of the modal content to 50% */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+  }
