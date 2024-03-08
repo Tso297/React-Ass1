@@ -49,7 +49,7 @@ const DataTable = () => {
         <>
             <Modal open={openModal} onClose={handleCloseModal} id={selectedItemId} />
             {openModal && <ContactForm id={selectedItemId} onClose={handleCloseModal} onSubmit={handleCreate} />}
-            <div className="container mx-auto mt-10 mb-5">
+            <div className="container bg-white bg-opacity-75 mx-auto mt-10 mb-5">
                 <h2 className="p-3 bg-slate-300 my-2 rounded">Pimpmobiles</h2>
                 <DataGrid
                     rows={contactData.map((_, index) => ({ id: index + 1, ..._ }))}

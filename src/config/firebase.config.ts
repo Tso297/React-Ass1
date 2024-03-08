@@ -1,4 +1,4 @@
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyC1rT1O2QFsUJcO1qV3CovhPhW7B2DVhOY",
   authDomain: "pimpmobiles.firebaseapp.com",
   projectId: "pimpmobiles",
