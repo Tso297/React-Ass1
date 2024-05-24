@@ -5,27 +5,28 @@ import { auth, Providers } from '../config/firebase.ts';
 
 interface Props {
   children: React.ReactNode;
-  signInAndExecuteCRUD: () => void; // Pass signInAndExecuteCRUD function as prop
+  // signInAndExecuteCRUD: () => void; // Pass signInAndExecuteCRUD function as prop
 }
 
-const AuthChecker = ({ children, signInAndExecuteCRUD }: Props) => {
+const AuthChecker = ({ children}: Props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const isSignedIn = localStorage.getItem('isSignedIn')
     const checkAuthentication = async () => {
       // Check if the user is not already signed in
-      if (!auth.currentUser) {
-        try {
-          // Sign in with Google provider when the component mounts
-          await signInWithPopup(auth, Providers.google);
-          // After successful sign-in, execute CRUD operation
-          signInAndExecuteCRUD();
-        } catch (error) {
-          // Handle sign-in error
-          console.error("Failed to sign in:", error);
-          // Navigate to home page or display an error message
-          navigate('/');
-        }
+      if (!isSignedIn) {
+        // try {
+        //   // Sign in with Google provider when the component mounts
+        //   await signInWithPopup(auth, Providers.google);
+        //   // After successful sign-in, execute CRUD operation
+        //   //signInAndExecuteCRUD();
+        // } catch (error) {
+        //   // Handle sign-in error
+        //   console.error("Failed to sign in:", error);
+        //   // Navigate to home page or display an error message
+        // }
+        navigate('../');
       }
     };
 
