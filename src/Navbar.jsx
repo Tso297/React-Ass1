@@ -11,14 +11,14 @@ const Navbar = () => {
   const signOutOnClick = () => {
     signOut(auth)
     localStorage.removeItem("isSignedIn")
-    location.reload();
+
 }
 
 const signInOnClick = async () => {
   const response = await signInWithPopup(auth, Providers.google);
   if  ( response.user) {
       localStorage.setItem( "isSignedIn", "true")
-      location.reload();
+
   }}
 
   const handleSignIn = () => {
